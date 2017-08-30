@@ -1,4 +1,4 @@
-# stylelint-junit-formatter
+# stylelint-junit-formatter2
 
 [![Build Status](https://travis-ci.org/eddies/stylelint-junit-formatter.svg?branch=master)](https://travis-ci.org/eddies/stylelint-junit-formatter)
 
@@ -11,18 +11,22 @@ Output JUnit XML reports of stylelint results (that can be parsed by CircleCI or
 ```javascript
 const fs = require('fs');
 const stylelint = require('stylelint');
-const junitFormatter = require('stylelint-junit-formatter');
+const junitFormatter = require('stylelint-junit-formatter2');
 
 const stylelintOptions = {
   files: '**/*.css',
-  formatter: junitFormatter,
+  formatter: junitFormatter({
+    hidePassed: boolean,
+    hidePath:   boolean,
+    output:     string
+  }),
 };
 
 stylelint.lint(stylelintOptions)
-  .then((resultObject) => {
-    // Do something with the result, e.g. write a report.xml to disk:
-    // fs.writeFile('report.xml', resultObject.output, (error) => {…});
-  });
+         .then((resultObject) => {
+    // Do something with the result
+});
+
 
 ```
 
@@ -73,3 +77,21 @@ In the event of errors, those are presented in a way that Bamboo can interpret:
   </testsuite>
 </testsuites>
 ```
+
+It can hide the passed files and the file path
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites package="stylelint.rules">
+  <testsuite name="fileB.css" failures="2" errors="2" tests="2">
+    <testcase name="declaration-block-properties-order">
+      <failure type="error" message="Expected quot;colorquot; to come before quot;font-weightquot; (declaration-block-properties-order)">On line 7, column 3 in fileB.css</failure>
+    </testcase>
+    <testcase name="shorthand-property-no-redundant-values">
+      <failure type="error" message="Unexpected longhand value #39;0 2rem 1.5rem 2rem#39; instead of #39;0 2rem 1.5rem#39; (shorthand-property-no-redundant-values)">On line 8, column 3 in ileB.css</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
+```
+
+And it can write the results into a file.

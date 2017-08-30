@@ -1,14 +1,14 @@
 {
-  "name": "stylelint-junit-formatter",
-  "version": "0.2.0",
-  "description": "Output JUnit XML reports of stylelint results",
+  "name": "stylelint-junit-formatter2",
+  "version": "0.0.1",
+  "description": "Output JUnit XML reports of stylelint results.",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eddies/stylelint-junit-formatter.git"
+    "url": "git+https://github.com/mikcsabee/stylelint-junit-formatter2.git"
   },
   "keywords": [
     "stylelint",
@@ -17,21 +17,22 @@
     "reporter",
     "report"
   ],
-  "author": "Edwin Shin",
+  "author": "Csaba Miklos",
   "contributors": [
+    "Edwin Shin",
     "David Clark",
     "Erik Pavletic"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eddies/stylelint-junit-formatter/issues"
+    "url": "https://github.com/mikcsabee/stylelint-junit-formatter2/issues"
   },
-  "homepage": "https://github.com/eddies/stylelint-junit-formatter#readme",
+  "homepage": "https://github.com/mikcsabee/stylelint-junit-formatter2#readme",
   "dependencies": {
-    "xmlbuilder": "^8.2.2"
+    "xmlbuilder": "^9.0.4"
   },
   "devDependencies": {
-    "tape": "^4.6.3",
-    "xml2js": "^0.4.17"
+    "tape": "^4.8.0",
+    "xml2js": "^0.4.19"
   }
 }
