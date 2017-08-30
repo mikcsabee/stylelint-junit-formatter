@@ -1,6 +1,6 @@
 # stylelint-junit-formatter2
 
-[![Build Status](https://travis-ci.org/eddies/stylelint-junit-formatter.svg?branch=master)](https://travis-ci.org/eddies/stylelint-junit-formatter)
+[![Build Status](https://travis-ci.org/mikcsabee/stylelint-junit-formatter2.svg?branch=master)](https://travis-ci.org/mikcsabee/stylelint-junit-formatter2)
 
 Output JUnit XML reports of stylelint results (that can be parsed by CircleCI or Bamboo).
 
