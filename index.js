@@ -38,8 +38,9 @@ class JunitXmlFormatter {
     const testSuites = stylelintResults.filter(testsuite => this.filter(testsuite))
                                        .map(testSuite    => this.parseSuite(testSuite));
 
-    const xml = xmlRoot.element(testSuites)
-                       .end({ pretty: true });
+    const xml = testSuites.length > 0
+              ? xmlRoot.element(testSuites).end({ pretty: true })
+              : xmlRoot.end({ pretty: true });            
 
     if (this.output !== null) {
       fs.writeFileSync(this.output, xml);

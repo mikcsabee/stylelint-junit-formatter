@@ -30,7 +30,7 @@ const mockPassingTest = [
   }
 ];
 
-const expectedPassingXml = `<?xml version="1.0" encoding="utf-8"?>
+const expectedPassingXmlShowPassed = `<?xml version="1.0" encoding="utf-8"?>
 <testsuites package="stylelint.rules">
   <testsuite name="path/to/fileA.css" failures="0" errors="0" tests="1">
     <testcase name="stylelint.passed"/>
@@ -42,6 +42,9 @@ const expectedPassingXml = `<?xml version="1.0" encoding="utf-8"?>
     <testcase name="stylelint.passed"/>
   </testsuite>
 </testsuites>`;
+
+const expectedPassingXmlHidePassed = `<?xml version="1.0" encoding="utf-8"?>
+<testsuites package="stylelint.rules"/>`;
 
 const mockFailingTest = [
   {
@@ -117,7 +120,18 @@ const expectedFailingXmlHidePassed = `<?xml version="1.0" encoding="utf-8"?>
 
 tape('It outputs a correct .xml for passing testsuites', (test) => {
   const output = stylelinitJunitFormatter()(mockPassingTest);
-  test.equal(output, expectedPassingXml, 'It matches expectation');
+  test.equal(output, expectedPassingXmlShowPassed, 'It matches expectation');
+  test.doesNotThrow(() => {
+    xml2js.parseString(output, (error) => {
+      if (error) throw error;
+    });
+  }, 'It outputs valid xml');
+  test.end();
+});
+
+tape('Empty xml if all passing and hidePassed is true', (test) => {
+  const output = stylelinitJunitFormatter({hidePassed:true})(mockPassingTest);
+  test.equal(output, expectedPassingXmlHidePassed, 'It matches expectation');
   test.doesNotThrow(() => {
     xml2js.parseString(output, (error) => {
       if (error) throw error;

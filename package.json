@@ -1,6 +1,6 @@
 {
   "name": "stylelint-junit-formatter2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Output JUnit XML reports of stylelint results.",
   "main": "index.js",
   "scripts": {
